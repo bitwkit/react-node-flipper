@@ -18,7 +18,7 @@ function ImgBook({imgUrls, currentSlide = undefined}) {
             const img = document.createElement('img');
             img.src = imgUrls[i];
             img.alt = i;
-            img.inload = () => dispatchLoad();
+            img.onload = () => dispatchLoad();
             images.current[i] = img;
         };
     }, [imgUrls]);
@@ -26,7 +26,7 @@ function ImgBook({imgUrls, currentSlide = undefined}) {
     useEffect( () => {
         (prevShown.current !== undefined) && container.current.removeChild(images.current[prevShown.current]);
         if (toLoad === 0) {
-            (currentSlide !== indefined) && container.current.appendChild(images.current[currentSlide]);
+            (currentSlide !== undefined) && container.current.appendChild(images.current[currentSlide]);
             prevShown.current = currentSlide;
         };
     }, [toLoad, currentSlide]);
