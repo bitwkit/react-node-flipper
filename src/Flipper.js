@@ -14,7 +14,8 @@ function Flipper({sequence, delay = 100, loop = 'none', children}) {
         switch(loop) {
             case 'pingpong':
                 nextStep = (step + changeValue.current + sequence.length) % sequence.length;
-                ((nextStep === 0) || (nextStep === sequence.length - 1)) && (changeValue.current *= -1);
+                (nextStep === 0) && (changeValue.current = 1);
+                (nextStep === sequence.length - 1) && (changeValue.current = -1);
                 break;
             case 'reverse':
                 nextStep = (step - 1 + sequence.length) % sequence.length;
